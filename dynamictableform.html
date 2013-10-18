@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--
+        File:  ~cmorris/GUI/dynamictableform.html
+        GUI Programming I
+        91.461 Assignment: Creating a Dynamic Table
+        Cameron R. Morris
+        cmorris@cs.uml.edu
+        UMass Lowell Computer Science Undergraduate
+
+        Last Updated: October 17, 2013  at 10:00 PM
+
+        Description: This page prompts the user using a form for four numbers
+                     and submits to processed at another page. It also will
+                     make sure the user input is validated.
+
+      -->
+
+    <title>91.61 GUI Programming I Fall 2013: Assignment 5</title>
+
+    <!-- Style sheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- Scripts -->
+    <script src="js/guiutil.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Title -->
+    <div id="header">
+      <script>
+        showTitle();
+      </script>
+    </div>
+
+    <!-- Navigation bar -->
+      <script>
+        showNavigation();
+      </script>
+
+    <!-- Content section -->
+    <div id="content">
+      <h3>Please enter four numbers:</h3>
+      <form id="dynamictableform">
+	<label for="number1">Number 1:</label>
+	<input type="text" id="number1" tabindex="1"><br>
+	<label for="number2">Number 2:</label>
+	<input type="text" id="number2" tabindex="2"><br>
+	<label for="number3">Number 3:</label>
+	<input type="text" id="number3" tabindex="3"><br>
+	<label for="number4">Number 4:</label>
+	<input type="text" id="number4" tabindex="4">
+      </form>
+    </div>
+
+  </body>
+
+</html>
