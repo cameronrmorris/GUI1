@@ -1,0 +1,64 @@
+/*
+  File:  ~cmorris/GUI/dynamictext.css
+  Cameron R. Morris, UMass Lowell Computer Science, cmorris@cs.uml.edu
+  Copyright (c) 2013 by Cameron R. Morris.  All rights reserved.  May be freely
+  copied or excerpted for educational purposes with credit to the author.
+
+  Last Updated: September 24, 2013 at 5:40 PM
+
+  Description: This file will contain all the styling for the dynamic text 
+               assignment
+*/
+
+/* Styling for the document information. */
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 5em;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.author {    
+    font-size: 1em;
+    text-align: center;
+}
+.location {
+    font-family: Georgia;
+    font-size: 0.9em;
+    text-align: center;
+    color: blue;
+}
+
+.date {
+    font-family: Georgia;
+    font-size: 0.8em;  
+    text-align: center;
+    color: blue;
+}
+
+.source {
+    font-family: Georgia;
+    font-size: 0.6em;
+    text-align: center;
+    color: blue;
+}
+
+/* Applies first letter styling to first paragraph only. */
+a.source + p.paragraph:first-letter {
+
+    font-size: 2em; 
+    font-weight: bold;
+    float: left; 
+    color: blue;
+    margin-right: 3px;
+}
+
+.paragraph {
+
+    font-family: Verdana;
+    font-size : 11pt;
+
+}

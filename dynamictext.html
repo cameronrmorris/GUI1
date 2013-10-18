@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--
+        File:  ~cmorris/GUI/dynamictext.html
+        GUI Programming I
+        91.461 Assignment 4:  Dynamic Text
+        Cameron R. Morris
+        cmorris@cs.uml.edu
+        UMass Lowell Computer Science Undergraduate
+
+        Last Updated: October 4, 2013 at 3:30 PM
+
+        Description: This assignment dynamically loads a JSON file containing
+	             an article and places in the page with CSS applied to it.
+      -->
+
+    <title>91.61 GUI Programming I Fall 2013 Index Page</title>
+
+    <!-- Style sheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/dynamictext.css" />
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+    <!-- Scripts -->
+    <script src="js/guiutil.js"></script>
+    <script src="js/dynamictext.js"></script>
+    <!-- Load jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Load JSON containing text -->
+    <script type="text/javascript">
+      var story;
+
+      jQuery.ajax( {
+      async: false,
+      dataType: "json",
+      url: "js/ihaveadream.json",
+      success: function( data ) { story = data ; }
+      });
+
+      $(document).ready( function() {
+      placeContent();
+      });
+    </script>
+  </head>
+
+  <body>
+
+    <!-- Title -->
+    <div id="header">
+      <script>
+        showTitle();
+      </script>
+    </div>
+
+    <!-- Navigation bar -->
+    <div id="nav">
+      <script>
+        showNavigation();
+      </script>
+    </div>
+
+    <!-- Content section -->
+    <div id="content"></div>
+
+  </body>
+
+</html>
