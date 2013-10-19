@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <!--
-        File:  ~cmorris/GUI/dynamictableform.html
+        File:  ~cmorris/GUI/dynamictableprocess.html
         GUI Programming I
         91.461 Assignment: Creating a Dynamic Table
         Cameron R. Morris
@@ -12,9 +12,8 @@
 
         Last Updated: October 17, 2013  at 10:00 PM
 
-        Description: This page prompts the user using a form for four numbers
-                     and submits to processed at another page. It also will
-                     make sure the user input is validated.
+        Description: This page takes the data entered from the form page and
+                     processes it into a multiplication table.
 
       -->
 
@@ -25,10 +24,12 @@
     <link rel="stylesheet" type="text/css" href="css/dynamictable.css" />
     <!-- Scripts -->
     <script src="js/guiutil.js"></script>
+    <!-- Jesse's functions for extracting parameters -->
+    <script src="js/formutilities.js"></script>
     <script src="js/dynamictable.js"></script>
   </head>
 
-  <body>
+  <body onload="buildTable()">
 
     <!-- Title -->
     <div id="header">
@@ -44,21 +45,7 @@
 
     <!-- Content section -->
     <div id="content">
-      <h3>Please enter four numbers:</h3>
-      <form id="tableForm" 
-	    action="dynamictableprocess.html" 
-	    method="get"
-	    onsubmit="return validateForm();">
-	<label for="number1">Number 1:</label>
-	<input id="n1" type="text" name="number1" tabindex="1"><br>
-	<label for="number2">Number 2:</label>
-	<input id="n2" type="text" name="number2" tabindex="2"><br>
-	<label for="number3">Number 3:</label>
-	<input id="n3" type="text" name="number3" tabindex="3"><br>
-	<label for="number4">Number 4:</label>
-	<input id="n4" type="text" name="number4" tabindex="4"><br>
-	<input type="submit" value="Submit">
-      </form>
+      
     </div>
   </body>
 </html>
