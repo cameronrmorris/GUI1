@@ -50,6 +50,8 @@ function validateForm() {
     frm.n2.style.borderColor = null;
     frm.n3.style.borderColor = null;
     frm.n4.style.borderColor = null;
+    document.getElementById("errormessage").innerHTML="";
+
 
     // Sanitize the user input and update it on the page
     frm.n1.value = sanitizeNumber(frm.n1.value);
@@ -63,6 +65,8 @@ function validateForm() {
 	// Alert user
 	frm.n1.style.borderColor = "red";
 	frm.n1.focus();
+	document.getElementById("errormessage").innerHTML= 
+	    "Number 1 is not valid.";
 	// Cancel submit
 	return false;
 
@@ -72,6 +76,8 @@ function validateForm() {
         // Alert user
         frm.n2.style.borderColor = "red";
         frm.n2.focus();
+	document.getElementById("errormessage").innerHTML= 
+	    "Number 2 is not valid.";
 
         // Cancel submit
         return false;
@@ -82,6 +88,8 @@ function validateForm() {
         // Alert user
         frm.n3.style.borderColor = "red";
         frm.n3.focus();
+	document.getElementById("errormessage").innerHTML= 
+	    "Number 3 is not valid.";
 
         // Cancel submit
         return false;
@@ -92,7 +100,9 @@ function validateForm() {
         // Alert user
         frm.n4.style.borderColor = "red";
         frm.n4.focus();
-
+	document.getElementById("errormessage").innerHTML= 
+	    "Number 4 is not valid.";
+	
         // Cancel submit
         return false;
 
@@ -113,6 +123,14 @@ function buildTable() {
 
     // Holds the resulting HTML table
     var strResult = "";
+
+    // Title
+    strResult += '<h3>Multiplication Table for: ';
+    strResult += numbers[0] + ", ";
+    strResult += numbers[1] + ", ";
+    strResult += numbers[2] + ", ";
+    strResult += numbers[3] + ".";
+    strResult += '</h3>'
 
     // Build the table
     strResult += '<table class="dynamictable">';

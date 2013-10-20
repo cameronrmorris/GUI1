@@ -1,23 +1,76 @@
+/*
+  File:  ~cmorris/GUI/dynamictable.css
+  Cameron R. Morris, UMass Lowell Computer Science, cmorris@cs.uml.edu
+  Copyright (c) 2013 by Cameron R. Morris.  All rights reserved.  May be freely
+  copied or excerpted for educational purposes with credit to the author.
+
+  Last Updated: October 20, 2013 at 12:50 PM
+
+  Description: This file will contain all the styling for the dynamic table
+               assignment
+*/
+
+
+/* Places the content in the center of the box */
 #content {
 
     text-align: center;
 
 }
 
+
+/* Sets the width, border and font style of each cell */
 td {
 
-    border: 1px solid black;
-    width: 2em;
+    width: 4em;
+    font-size: 16pt;
+    font-family: Verdana;
+    border: 3px inset grey;
 
 }
 
+/* Sets the first column to the header background, text color and border. */
+tr:nth-child(n+1) td:first-child  {
+
+    border: 5px outset grey;
+    background: #0066FF;
+    color: white;
+
+}
+
+/* Sets the first row to the header background, text color and border. */
+tr:first-child td:nth-child(n+1) {
+
+    border: 5px outset grey;
+    background: #0066FF;
+    color: white;
+
+}
+
+/* Sets top left cell to white and no border. */
+tr:first-child td:first-child {
+
+    background: white;
+    border: none;
+
+}
+
+/* Sets the position and border style of the table */
 .dynamictable {
 
     margin-left:auto;
     margin-right: auto;
     margin-top: 2px;
-    margin-bottom: 2px;
-    border: 1px solid black;
-    border-collapse:collapse;
+    margin-bottom: 5px;
+    border-collapse: separate;
+
+}
+
+/* Sets the style of the error message if needed */
+#errormessage {
+
+    color: red;
+    font-size: 10pt;
+
 
 }
