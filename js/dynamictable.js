@@ -151,7 +151,15 @@ function buildTable() {
 	for( var j=0; j < numbers.length; j++ ) {
 
 	    strResult += '<td>';
-	    strResult += ( numbers[i] * numbers[j] );
+	    var result =  numbers[i] * numbers[j];
+	    // Decimal number.
+	    if( result != Math.floor( result ) ) {
+		strResult += result.toFixed(2);
+	    }
+	    // Does not contain decimal.
+	    else {
+		strResult += result;
+	    }
 	    strResult += '</td>';
 
 	}
