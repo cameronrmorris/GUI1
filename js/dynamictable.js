@@ -108,6 +108,7 @@ function validateForm() {
 
     }
 
+    // Valid input
     return true;
 }
 
@@ -137,9 +138,9 @@ function buildTable() {
 
     // Generate top columns
     strResult += '<tr><td></td>';
-    for( var i=0; i < numbers.length; i++ ) {
+    for( var i=1; i <= 5; i++ ) {
 	
-	strResult += '<td>' + numbers[i] + '</td>';
+	strResult += '<td>' + i + '</td>';
     
     }
     strResult += '</tr>';
@@ -148,10 +149,10 @@ function buildTable() {
 
 	strResult += '<tr>';
 	strResult += '<td>' + numbers[i] + '</td>';
-	for( var j=0; j < numbers.length; j++ ) {
+	for( var j=1; j <= 5; j++ ) {
 
 	    strResult += '<td>';
-	    var result =  numbers[i] * numbers[j];
+	    var result =  numbers[i] * j;
 	    // Decimal number.
 	    if( result != Math.floor( result ) ) {
 		strResult += result.toFixed(2);
