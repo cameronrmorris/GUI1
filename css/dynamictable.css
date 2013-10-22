@@ -22,11 +22,12 @@
 /* Sets the width, border and font style of each cell */
 td {
 
-    width: 4em;
-    font-size: 16pt;
+    width: 6em;
+    font-size: 12pt;
     font-family: Verdana;
     border: 3px inset grey;
-
+    max-width: 6em;
+    word-wrap: break-word;
 }
 
 /* Sets the first column to the header background, text color and border. */
