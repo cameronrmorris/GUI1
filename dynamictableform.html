@@ -49,14 +49,16 @@
 	    action="dynamictableprocess.html" 
 	    method="get"
 	    onsubmit="return validateForm();">
-	<label for="number1">Number 1:</label>
-	<input id="n1" type="text" name="number1" tabindex="1"><br>
-	<label for="number2">Number 2:</label>
-	<input id="n2" type="text" name="number2" tabindex="2"><br>
-	<label for="number3">Number 3:</label>
-	<input id="n3" type="text" name="number3" tabindex="3"><br>
-	<label for="number4">Number 4:</label>
-	<input id="n4" type="text" name="number4" tabindex="4"><br>
+	<div id="fields">
+	<label for="n1">Multiplier Start:</label>
+	<input id="n1" type="text" name="n1" tabindex="1"><br>
+	<label for="n2">Multiplier End:</label>
+	<input id="n2" type="text" name="n2" tabindex="2"><br>
+	<label for="n3">Multiplicand Start:</label>
+	<input id="n3" type="text" name="n3" tabindex="3"><br>
+	<label for="n4">Multiplicand End:</label>
+	<input id="n4" type="text" name="n4" tabindex="4"><br>
+	</div>
 	<!-- Blank div for error messsage -->
 	<div id="errormessage"></div>
 	<input type="submit" value="Submit" tabindex="5">

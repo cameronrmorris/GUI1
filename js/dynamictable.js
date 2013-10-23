@@ -83,6 +83,24 @@ function validateForm() {
         return false;
 
     }
+    
+    // Multiplier beginning is greater than end
+    if( parseFloat(frm.n1.value) > parseFloat(frm.n2.value) ) {
+	
+	// Alert user
+        frm.n1.style.borderColor = "red";
+        frm.n1.focus();
+	frm.n2.style.borderColor = "red";
+        frm.n2.focus();
+        document.getElementById("errormessage").innerHTML=
+            "Error: Multiplier begin is greater than the end.";
+	
+        // Cancel submit
+        return false;
+	
+	
+    }
+
     if( !validNumber( frm.n3.value ) ) {
 
         // Alert user
@@ -106,7 +124,26 @@ function validateForm() {
         // Cancel submit
         return false;
 
+    }    
+
+
+    // Multiplicand beginning is greater than end
+    if( parseFloat(frm.n3.value) > parseFloat(frm.n4.value) ) {
+
+        // Alert user
+	frm.n3.style.borderColor = "red";
+        frm.n3.focus();
+        frm.n4.style.borderColor = "red";
+        frm.n4.focus();
+        document.getElementById("errormessage").innerHTML=
+            "Error: Multiplicand begin is greater than the end.";
+
+        // Cancel submit
+        return false;
+
+
     }
+
 
     // Valid input
     return true;
@@ -117,19 +154,23 @@ function buildTable() {
 
     // Get the values passed from the form
     var numbers = new Array();
-    numbers[0] = parseFloat(getParameter("number1"));
-    numbers[1] = parseFloat(getParameter("number2"));
-    numbers[2] = parseFloat(getParameter("number3"));
-    numbers[3] = parseFloat(getParameter("number4"));
+    // Horizontal start
+    numbers[0] = parseFloat(getParameter("n1"));
+    // Horizontal end
+    numbers[1] = parseFloat(getParameter("n2"));
+    // Vertical start
+    numbers[2] = parseFloat(getParameter("n3"));
+    // Vertical end
+    numbers[3] = parseFloat(getParameter("n4"));
 
     // Holds the resulting HTML table
     var strResult = "";
 
     // Title
-    strResult += '<h3>Multiplication Table for: ';
-    strResult += numbers[0] + ", ";
-    strResult += numbers[1] + ", ";
-    strResult += numbers[2] + ", ";
+    strResult += '<h3>Multiplication Table of<br>Multipliers: ';
+    strResult += numbers[0] + " to ";
+    strResult += numbers[1] + ". Multiplicands: ";
+    strResult += numbers[2] + " to ";
     strResult += numbers[3] + ".";
     strResult += '</h3>'
 
@@ -138,21 +179,21 @@ function buildTable() {
 
     // Generate top columns
     strResult += '<tr><td></td>';
-    for( var i=1; i <= 5; i++ ) {
+    for( var i= numbers[0] ; i <= numbers[1]; i++ ) {
 	
 	strResult += '<td>' + i + '</td>';
     
     }
     strResult += '</tr>';
     // Generate rows headers and values
-    for( var i=0; i < numbers.length; i++ ) {
+    for( var i = numbers[2]; i <= numbers[3]; i++ ) {
 
 	strResult += '<tr>';
-	strResult += '<td>' + numbers[i] + '</td>';
-	for( var j=1; j <= 5; j++ ) {
+	strResult += '<td>' + i + '</td>';
+	for( var j = numbers[0] ; j <= numbers[1]; j++ ) {
 
 	    strResult += '<td>';
-	    var result =  numbers[i] * j;
+	    var result =  i * j;
 	    // Decimal number.
 	    if( result != Math.floor( result ) ) {
 		strResult += result.toFixed(2);
@@ -170,5 +211,10 @@ function buildTable() {
 
     // Place the table on the page
     document.getElementById("content").innerHTML=strResult;
-
+    
+    // Need scrolling?
+    
+    if( numbers[1]-numbers[0] > 15 ) {
+	document.getElementById("content").style.overflow = "scroll";
+    }
 }
