@@ -24,8 +24,11 @@ function sanitizeNumber( number ) {
     // Remove any spaces
     str = str.split(' ').join('');
 
-    return str;
-
+    if( validNumber(parseInt(str)) ) {
+	return parseInt(str);
+    }
+    else
+	return str;
 }
 
 
@@ -85,7 +88,7 @@ function validateForm() {
     }
     
     // Multiplier beginning is greater than end
-    if( parseFloat(frm.n1.value) > parseFloat(frm.n2.value) ) {
+    if( parseInt(frm.n1.value) > parseInt(frm.n2.value) ) {
 	
 	// Alert user
         frm.n1.style.borderColor = "red";
@@ -128,7 +131,7 @@ function validateForm() {
 
 
     // Multiplicand beginning is greater than end
-    if( parseFloat(frm.n3.value) > parseFloat(frm.n4.value) ) {
+    if( parseInt(frm.n3.value) > parseInt(frm.n4.value) ) {
 
         // Alert user
 	frm.n3.style.borderColor = "red";
@@ -155,13 +158,13 @@ function buildTable() {
     // Get the values passed from the form
     var numbers = new Array();
     // Horizontal start
-    numbers[0] = parseFloat(getParameter("n1"));
+    numbers[0] = parseInt(getParameter("n1"));
     // Horizontal end
-    numbers[1] = parseFloat(getParameter("n2"));
+    numbers[1] = parseInt(getParameter("n2"));
     // Vertical start
-    numbers[2] = parseFloat(getParameter("n3"));
+    numbers[2] = parseInt(getParameter("n3"));
     // Vertical end
-    numbers[3] = parseFloat(getParameter("n4"));
+    numbers[3] = parseInt(getParameter("n4"));
 
     // Holds the resulting HTML table
     var strResult = "";
