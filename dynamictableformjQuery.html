@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!--
+        File:  ~cmorris/GUI/dynamictableform.html
+        GUI Programming I
+        91.461 Assignment: Creating a Dynamic Table
+        Cameron R. Morris
+        cmorris@cs.uml.edu
+        UMass Lowell Computer Science Undergraduate
+
+        Last Updated: October 17, 2013  at 10:00 PM
+
+        Description: This page prompts the user using a form for four numbers
+                     and submits it to processed at another page. It also will
+                     make sure the user input is validated.
+
+      -->
+
+    <title>91.61 GUI Programming I Fall 2013: Assignment 5</title>
+
+    <!-- Style sheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/dynamictable.css" />
+    <!-- Scripts -->
+    <script src="js/guiutil.js"></script>
+    <!-- jQuery plugin -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/additional-methods.min.js"></script>
+    <script src="js/dynamictable.js"></script>
+
+    <!-- jQuery validation -->
+    <script src="js/dynamictablejQuery.js"><script>
+
+  </head>
+
+  <body>
+
+    <!-- Title -->
+    <div id="header">
+      <script>
+        showTitle();
+      </script>
+    </div>
+
+    <!-- Navigation bar -->
+      <script>
+        showNavigation();
+      </script>
+
+    <!-- Content section -->
+    <div id="content">
+      <h3>Please enter four numbers:</h3>
+      <form id="tableForm" 
+	    action="dynamictableprocess.html" 
+	    method="get">
+	<div id="fields">
+	<label for="n1">Multiplier Start:
+	<input id="n1" type="text" name="n1" tabindex="1"></label>
+	<label for="n2">Multiplier End:
+	<input id="n2" type="text" name="n2" tabindex="2"></label>
+	<label for="n3">Multiplicand Start:
+	<input id="n3" type="text" name="n3" tabindex="3"></label>
+	<label for="n4">Multiplicand End:
+	<input id="n4" type="text" name="n4" tabindex="4"></label>
+	</div>
+	<!-- Blank div for error messsage -->
+	<div id="errormessage"></div>
+	<input type="submit" value="Submit" tabindex="5">
+      </form>
+    </div>
+  </body>
+</html>

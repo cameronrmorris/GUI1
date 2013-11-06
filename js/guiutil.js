@@ -34,6 +34,7 @@ function showNavigation() {
     document.write('<li><a href="index.html">Assignment #3: Styling Your First Website with CSS</a></li>');
     document.write('<li><a href="dynamictext.html">Assignment #4: Dynamic Text</a></li>');
  document.write('<li><a href="dynamictableform.html">Assignment #5: Creating a Dynamic Table </a></li>');
+     document.write('<li><a href="dynamictableformjQuery.html">Assignment #6: Using the jQuery Validation Plugin with Your Dynamic Table</a></li>');
     document.write('</ul></li>');
     document.write('<li><a href="about.html">About</a></li>');
     document.write('</ul>');

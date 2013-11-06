@@ -74,10 +74,31 @@ tr:first-child td:first-child {
 
 
 }
+
+label {
+
+    display: block;
+
+}
+
+
 /* Aligns the fields of the form */
 #fields {
 
     text-align: right;
     display: inline-block;
 
+}
+
+/* Applies the jQuery error class */
+
+input.error {
+    border: 2px solid red;
+}
+
+/* Places the input error under the input box */
+label.error { 
+    color: red;
+    display: block;
+   
 }
