@@ -17,11 +17,11 @@ $().ready(function() {
 
     // Multiplier beginning is greater than end
     $.validator.addMethod("n2smaller", function(value, element) {
-	return $("#n1").val() < $("#n2").val()
+	return this.optional(element) || parseInt(value) > $("#n1").val()
     }, "Error: Multiplier begin is greater than the end.");
     // Multiplier beginning is greater than end
     $.validator.addMethod("n4smaller", function(value, element) {
-	return $("#n3").val() < $("#n4").val()
+	return this.optional(element) || parseInt(value) > $("#n3").val()
     }, "Error: Multiplier begin is greater than the end.");
     
     // validate signup form on keyup and submit
