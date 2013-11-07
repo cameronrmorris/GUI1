@@ -18,11 +18,11 @@ $().ready(function() {
     // Multiplier beginning is greater than end
     $.validator.addMethod("n2smaller", function(value, element) {
 	return this.optional(element) || parseInt(value) > $("#n1").val()
-    }, "Error: Multiplier begin is greater than the end.");
+    }, "Multiplier begin is greater than the end.");
     // Multiplier beginning is greater than end
     $.validator.addMethod("n4smaller", function(value, element) {
 	return this.optional(element) || parseInt(value) > $("#n3").val()
-    }, "Error: Multiplier begin is greater than the end.");
+    }, "Multiplier begin is greater than the end.");
     
     // validate signup form on keyup and submit
     $("#tableForm").validate({
@@ -33,9 +33,17 @@ $().ready(function() {
             if (errors) {
                 var message = errors == 1
                     ? 'You missed 1 field. It has been highlighted above'
-                    : 'You missed ' + errors + ' fields.  They have been highlighted above';
-                $("#errormessage").html(message);
-                $("#errormessage").show();
+                    : 'You missed ' + errors 
+		    + ' fields.  They have been highlighted above';
+                $("#errormessage")
+		    .html(message)
+		    .delay(5000)
+		    .slideUp(300, 
+			     function() { 
+				 $("#errormessage")
+				     .html(" ")
+				     .css("display","block");  
+			     } );
             } else {
                 $("#errormessage").hide();
             }
@@ -75,14 +83,14 @@ $().ready(function() {
 		},
 	    n2: { required: "This field is required.",
 		  digits: "Please enter a valid integer.",
-		  n2smaller: "This field has to be greater than the beginning."
+		  n2smaller: "Multiplier End has to be greater than the start."
 		},
             n3: { required: "This field is required.",
 		  digits: "Please enter a valid integer.",
 		},
 	    n4: { required: "This field is required.",
 		  digits: "Please enter a valid integer.",
-		  n4smaller: "This field has to be greater than the beginning."
+		  n4smaller: "Multplicand End has to be greater than the start."
 		},   
         }
     });
