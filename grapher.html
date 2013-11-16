@@ -11,6 +11,11 @@
     -->
     <title>Graphing Calculator</title>
 
+    <!-- Style sheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- Scripts -->
+    <script src="js/guiutil.js"></script>
+
     <!-- Load dependencies -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/mathjs/0.15.0/math.min.js"></script>
@@ -19,10 +24,30 @@
     <script src="js/grapher.js"> </script>
   </head>
   <body>
-    <!-- This text field will contain the math expression to plot. -->
-    <input id="inputField">
+    
+     <!-- Title -->
+    <div id="header">
+      <script>
+        showTitle();
+      </script>
+    </div>
 
-    <!-- The math expression will be plotted on this Canvas. -->
-    <canvas width="200" height="200" id="myCanvas"></canvas>
+    <!-- Navigation bar -->
+      <script>
+        showNavigation();
+      </script>
+
+    <!-- Content section -->
+    <div id="content">
+
+
+      <!-- This text field will contain the math expression to plot. -->
+      <input id="inputField">
+      
+      <!-- The math expression will be plotted on this Canvas. -->
+      <canvas width="200" height="200" id="myCanvas"></canvas>
+      
+    </div>
+
   </body>
 </html>
