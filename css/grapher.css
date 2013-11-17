@@ -10,6 +10,7 @@
                assignment.
 */
 
+/* Pads the content section so the grapher doesn't touch edges. */
 #content {
     
     padding-bottom: 10px;
@@ -17,6 +18,7 @@
     text-align: center;
 }
 
+/* Centers the grapher and adds a border. */
 #myCanvas {
 
     margin-left: auto;
@@ -27,11 +29,12 @@
 
 }
 
+/* Labels will contain the field as content so they display nicely. */
 label {
     display: block;
 }
 
-/* Aligns the fields of the form */
+/* Aligns the fields  */
 #fields {
 
     text-align: right;
