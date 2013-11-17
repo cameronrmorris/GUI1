@@ -13,6 +13,8 @@
 
     <!-- Style sheet -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- Grapher page style -->
+    <link rel="stylesheet" type="text/css" href="css/grapher.css" />
     <!-- Scripts -->
     <script src="js/guiutil.js"></script>
 
@@ -39,15 +41,15 @@
 
     <!-- Content section -->
     <div id="content">
-
+      <h3>HTML5 Graphing calculator</h3>
+      <!-- The math expression will be plotted on this Canvas. -->
+      <canvas width="400" height="400" id="myCanvas"></canvas>
 
       <!-- This text field will contain the math expression to plot. -->
-      <input id="inputField">
-      
-      <!-- The math expression will be plotted on this Canvas. -->
-      <canvas width="200" height="200" id="myCanvas"></canvas>
-      
-    </div>
-
+      <div id="fields">
+	<label for="inputField">F(x+t)=
+	  <input id="inputField" tabindex="1" type="text">
+	</label>
+      </div>
   </body>
 </html>

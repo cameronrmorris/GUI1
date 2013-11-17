@@ -1,0 +1,40 @@
+/*
+  File:  grapher.css
+  Cameron R. Morris, UMass Lowell Computer Science, cmorris@cs.uml.edu
+  Copyright (c) 2013 by Cameron R. Morris.  All rights reserved.  May be freely
+  copied or excerpted for educational purposes with credit to the author.
+
+  Last Updated: November 16, 2013 at 3:50 PM
+
+  Description: This file will contain all the styling for the grapher 
+               assignment.
+*/
+
+#content {
+    
+    padding-bottom: 10px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#myCanvas {
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-style: solid;
+    border-width: 1px;
+
+}
+
+label {
+    display: block;
+}
+
+/* Aligns the fields of the form */
+#fields {
+
+    text-align: right;
+    display: inline-block;
+
+}
