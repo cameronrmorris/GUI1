@@ -1,10 +1,23 @@
-/**
- * HTML5 Canvas Graphing Calculator
- * By Curran Kelleher 11/14/2013
- *
- * Draws from examples found in
- * https://github.com/curran/screencasts/tree/gh-pages/grapher
- */
+/*
+  File:  grapher.js
+  Cameron R. Morris, UMass Lowell Computer Science, cmorris@cs.uml.edu
+  Copyright (c) 2013 by Cameron R. Morris.  All rights reserved.  May be freely
+  copied or excerpted for educational purposes with credit to the author.
+
+  Last Updated: November 17, 2013 at 12:30 PM
+
+  Description: Contains all the functions required to generate the graphing
+               calculator in the HTML canvas.
+
+  Original author:
+
+  * HTML5 Canvas Graphing Calculator
+  * By Curran Kelleher 11/14/2013
+  *
+  * Draws from examples found in
+  * https://github.com/curran/screencasts/tree/gh-pages/grapher
+
+*/
 
 // Wait for the DOM to be ready using jQuery.
 // This also ensures our variables do not pollute the global namespace,
@@ -21,7 +34,7 @@ $(function (){
       
       // 'n' is the number of discrete points used to approximate the 
       // continuous math curve defined by the math expression.
-      n = 100,
+      n = 200,
       
       // Define the math "window", which is the visible region in 
       // "math coordinates" that gets projected onto the Canvas.
@@ -120,8 +133,84 @@ $(function (){
     time += timeIncrement;
     
     // redraw
+    drawGrapher();
     drawCurve();
   }
+
+
+  // Draws a line at specified coordinates to destination coordinates with a
+  // specified line width.
+  function drawLine( x, y, dx, dy, lineWidth) {
+
+    // Preserve original lineWidth
+    var tmp = c.lineWidth;
+
+    // Set line width
+    c.lineWidth=lineWidth;
+    // Draw line
+    c.beginPath();  
+    c.moveTo(x,y);
+    c.lineTo(dx,dy);
+    c.closePath();
+    c.stroke();
+
+    // Restore original lineWidth
+    c.lineWidth = tmp;
+
+  }
+
+  // Draws filled text a location adjusted for text width with a specified font
+  // and color.
+  function drawFilledText( text, x, y, font, color) {
+    
+    // Preserve font and color
+    var tmpfont = c.font,
+        tmpcolor = c.fillStyle;
+
+    // Draw text
+    c.font = font;
+    c.fillStyle = color;
+    c.fillText(text, x-c.measureText(text).width, y);
+
+    // Restore font and color
+    c.font = tmpfont;
+    c.fillStyle = tmpcolor;
+
+  }
+
+  // Draws the x axis with a label and tick marks with labels
+  function drawXAxis() {
+    // Draw X axis line
+    drawLine(0, canvas.height/2, canvas.width, canvas.height/2, 0.5 );
+    
+    // Draw X label
+    drawFilledText( "X", canvas.width, canvas.height/2, "8pt Arial", "red");
+
+
+  }
+
+  // Draws the y axis with a label and tick marks with labels
+  function drawYAxis() {
+    // Draws Y axis line
+    drawLine(canvas.width/2, 0, canvas.width/2, canvas.height, 0.5 );
+
+    // Draws Y label
+    drawFilledText( "Y", canvas.width/2, 8, "8pt Arial", "red");
+  }
+
+  // Draws the graphing calculater layout.
+  function drawGrapher() {
+      
+    // Clear the canvas.
+    c.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw X axis
+    drawXAxis();
+
+    // Draw Y axis
+    drawYAxis();
+
+  } 
 
   // Plots the math expression curve on the canvas.
   function drawCurve(){
@@ -137,9 +226,6 @@ $(function (){
         
         // These are values in math coordinates.
         mathX, mathY;
-    
-    // Clear the canvas.
-    c.clearRect(0, 0, canvas.width, canvas.height);
     
     // Plot the math expression as a curve using the Canvas API:
     
