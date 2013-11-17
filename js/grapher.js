@@ -17,7 +17,7 @@
   * Draws from examples found in
   * https://github.com/curran/screencasts/tree/gh-pages/grapher
 
-*/
+  */
 
 // Wait for the DOM to be ready using jQuery.
 // This also ensures our variables do not pollute the global namespace,
@@ -162,10 +162,10 @@ $(function (){
   // Draws filled text a location adjusted for text width with a specified font
   // and color.
   function drawFilledText( text, x, y, font, color) {
-    
+
     // Preserve font and color
     var tmpfont = c.font,
-        tmpcolor = c.fillStyle;
+    tmpcolor = c.fillStyle;
 
     // Draw text
     c.font = font;
@@ -200,7 +200,7 @@ $(function (){
 
   // Draws the graphing calculater layout.
   function drawGrapher() {
-      
+
     // Clear the canvas.
     c.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -216,7 +216,7 @@ $(function (){
   function drawCurve(){
     // These variables are used inside the for loop.
     var i, 
-        
+    
         // These vary between xMin and xMax
         //                and yMin and yMax.
         xPixel, yPixel,
@@ -226,7 +226,7 @@ $(function (){
         
         // These are values in math coordinates.
         mathX, mathY;
-    
+        
     // Plot the math expression as a curve using the Canvas API:
     
     // This line of code begins the math curve path definition.
@@ -242,7 +242,7 @@ $(function (){
 
       // 'mathX' varies between 'xMin' and 'xMax'.
       mathX = percentX * (xMax - xMin) + xMin;
-     
+      
       mathY = evaluateMathExpr(mathX);
       
       // Project 'mathY' from the interval ['yMin', 'yMax']
@@ -255,6 +255,7 @@ $(function (){
       // Project percentX and percentY to pixel coordinates.
       xPixel = percentX * canvas.width;
       yPixel = percentY * canvas.height;
+      
 
       // The first time this line of code is run, it defines the first point
       // in the path, acting exactly like 'c.moveTo(xPixel, yPixel);'
