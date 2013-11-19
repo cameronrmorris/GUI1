@@ -185,8 +185,11 @@ $(function (){
 
 	// Draws the x axis with a label and tick marks with labels
 	function drawXAxis() {
+
+		var xAxisY = (1 - ((-yMin) / (yMax - yMin)))*canvas.height;
+
 		// Draw X axis line
-		drawLine(0, canvas.height/2, canvas.width, canvas.height/2, 0.5 );
+		drawLine(0, xAxisY, canvas.width, xAxisY, 0.5 );
 		
 		// Draw X label
 		drawFilledText( "X", canvas.width, canvas.height/2, "8pt Arial", "red");
@@ -203,15 +206,15 @@ $(function (){
 
 			// Draw tick mark
 			drawLine( xpos*canvas.width, 
-								canvas.height / 2 - tickSize/2, 
+								xAxisY - tickSize/2, 
 								xpos*canvas.width, 
-								canvas.height/2 + tickSize/2,
+								xAxisY + tickSize/2,
 								0.5 );
 
 			// Draw tick label
 			drawFilledText( i, 
 											xpos*canvas.width + tickLabelXOffset, 
-											canvas.height/2 + tickLabelYOffset, 
+											xAxisY + tickLabelYOffset, 
 											"7pt Arial", 
 											"black" );
 
@@ -223,8 +226,11 @@ $(function (){
 
 	// Draws the y axis with a label and tick marks with labels
 	function drawYAxis() {
+
+		var yAxisX = ((-xMin) / (xMax - xMin))*canvas.width;
+
 		// Draws Y axis line
-		drawLine(canvas.width/2, 0, canvas.width/2, canvas.height, 0.5 );
+		drawLine(yAxisX, 0, yAxisX, canvas.height, 0.5 );
 
 		// Draws Y label
 		drawFilledText( "Y", canvas.width/2, 8, "8pt Arial", "red");
@@ -240,15 +246,15 @@ $(function (){
 			var ypos = (i - yMin) / (yMax - yMin);
 
 			// Draw tick mark
-			drawLine( canvas.width / 2 - tickSize / 2, 
+			drawLine( yAxisX - tickSize / 2, 
 								ypos*canvas.height, 
-								canvas.width / 2 + tickSize / 2, 
+								yAxisX + tickSize / 2, 
 								ypos*canvas.height,
 								0.5 );
 
 			// Draw tick label
-			drawFilledText( i, 
-											canvas.width /2 + tickLabelYOffset, 
+			drawFilledText( -i, 
+											yAxisX + tickLabelYOffset, 
 											ypos*canvas.height + tickLabelXOffset, 
 											"7pt Arial", 
 											"black" );
