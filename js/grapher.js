@@ -71,6 +71,7 @@ $(function (){
 			timeIncrement = 0.1,
 
 			// Defines the offsets and size of the tick marks for the graph
+			numTicks = 20,
 			tickLabelXOffset = 2,
 			tickLabelYOffset = 15,
 			tickSize = 10;
@@ -186,23 +187,30 @@ $(function (){
 	// Draws the x axis with a label and tick marks with labels
 	function drawXAxis() {
 
+		// Calculate the vertical location of the x axis
 		var xAxisY = (1 - ((-yMin) / (yMax - yMin)))*canvas.height;
+		// Calculate the step value between each tick
+		var step = (xMax - xMin) / numTicks;
+		// Holds the value of the tick
+		var label;
 
 		// Draw X axis line
 		drawLine(0, xAxisY, canvas.width, xAxisY, 0.5 );
 		
 		// Draw X label
-		drawFilledText( "X", canvas.width, canvas.height/2, "8pt Arial", "red");
+		drawFilledText( "X", canvas.width, xAxisY, "8pt Arial", "red");
 
 		// Draws X axis tick marks
-		for( i = xMin+1; i < xMax; i++ ) {
+		for( i = -((numTicks/2)-1), label = xMin+step;
+				 i < numTicks/2; 
+				 i++, label+= step ) {
 
 			// Don't draw an origin tick
-			if( i == 0)
+			if( i == 0) {
 				continue;
-
+			}
 			// Calculate x position of the tick mark
-			var xpos = (i - xMin) / (xMax - xMin);
+			var xpos = (i + numTicks/2) / numTicks;
 
 			// Draw tick mark
 			drawLine( xpos*canvas.width, 
@@ -212,13 +220,11 @@ $(function (){
 								0.5 );
 
 			// Draw tick label
-			drawFilledText( i, 
+			drawFilledText( label, 
 											xpos*canvas.width + tickLabelXOffset, 
 											xAxisY + tickLabelYOffset, 
 											"7pt Arial", 
 											"black" );
-
-
 		}	
 
 
@@ -227,23 +233,30 @@ $(function (){
 	// Draws the y axis with a label and tick marks with labels
 	function drawYAxis() {
 
+		// Calculate the horizontal location of the y axis
 		var yAxisX = ((-xMin) / (xMax - xMin))*canvas.width;
+		// Calculate the step value between each tick
+		var step = (yMax - yMin) / numTicks;
+		// Holds the value of the tick
+		var label;
 
 		// Draws Y axis line
 		drawLine(yAxisX, 0, yAxisX, canvas.height, 0.5 );
 
 		// Draws Y label
-		drawFilledText( "Y", canvas.width/2, 8, "8pt Arial", "red");
+		drawFilledText( "Y", yAxisX, 8, "8pt Arial", "red");
 
 		// Draws Y axis tick marks
-		for( i = yMin+1; i < yMax; i++ ) {
+		for( i = -((numTicks/2)-1), label = yMin+step;
+				 i < numTicks/2; i++, 
+				 label+= step  ) {
 
 			// Don't draw an origin tick
 			if( i == 0)
 				continue;
 
 			// Calculate y position of the tick mark
-			var ypos = (i - yMin) / (yMax - yMin);
+			var ypos = -(i - numTicks/2) / numTicks;
 
 			// Draw tick mark
 			drawLine( yAxisX - tickSize / 2, 
@@ -253,7 +266,7 @@ $(function (){
 								0.5 );
 
 			// Draw tick label
-			drawFilledText( -i, 
+			drawFilledText( -label, 
 											yAxisX + tickLabelYOffset, 
 											ypos*canvas.height + tickLabelXOffset, 
 											"7pt Arial", 
