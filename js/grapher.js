@@ -128,21 +128,17 @@ $(function (){
 	function initMinMaxFields() {
 
 		// Min fields
-		var field = $("#xmin");
-		field.change(function( event ) {
+		$("#xmin").change(function( event ) {
 			xMin = parseInt($("#xmin").val());
 		});
-		field = $("#ymin");
-		field.change(function( event ) {
+		$("#ymin").change(function( event ) {
 			yMin = parseInt($("#ymin").val());
 		});
 		// Max fields
-		field = $("#xmax");
-		field.change(function( event ) {
+		$("#xmax").change(function( event ) {
 			xMax = parseInt($("#xmax").val());
 		});
-		field = $("#ymax");
-		field.change(function( event ) {
+		$("#ymax").change(function( event ) {
 			yMax = parseInt($("#ymax").val());
 		});
 
@@ -231,10 +227,6 @@ $(function (){
 				 i < numTicks/2; 
 				 i++, label+= step ) {
 
-			// Don't draw an origin tick
-			if( i == 0) {
-				continue;
-			}
 			// Calculate x position of the tick mark
 			var xpos = (i + numTicks/2) / numTicks;
 
@@ -246,10 +238,11 @@ $(function (){
 								0.5 );
 
 			// Draw tick label
+			if( label != 0)
 			drawFilledText( (label % 1 != 0) ? label.toFixed(1) : label, 
 											xpos*canvas.width + tickLabelXOffset, 
 											xAxisY + tickLabelYOffset, 
-											"7pt Arial", 
+											"6pt Arial", 
 											"black" );
 		}	
 
@@ -277,10 +270,6 @@ $(function (){
 				 i < numTicks/2; i++, 
 				 label+= step  ) {
 
-			// Don't draw an origin tick
-			if( i == 0)
-				continue;
-
 			// Calculate y position of the tick mark
 			var ypos = -(i - numTicks/2) / numTicks;
 
@@ -292,12 +281,12 @@ $(function (){
 								0.5 );
 
 			// Draw tick label
+			if( label != 0)
 			drawFilledText(  (-label % 1 != 0) ? -label.toFixed(1) : -label, 
 											yAxisX + tickLabelYOffset, 
 											ypos*canvas.height + tickLabelXOffset, 
-											"7pt Arial", 
+											"6pt Arial", 
 											"black" );
-
 
 		}	
 
