@@ -1,7 +1,7 @@
 /*
-	File:  grapher.js
+	File:	 grapher.js
 	Cameron R. Morris, UMass Lowell Computer Science, cmorris@cs.uml.edu
-	Copyright (c) 2013 by Cameron R. Morris.  All rights reserved.  May be freely
+	Copyright (c) 2013 by Cameron R. Morris.	All rights reserved.	May be freely
 	copied or excerpted for educational purposes with credit to the author.
 
 	Last Updated: November 17, 2013 at 12:30 PM
@@ -53,7 +53,7 @@ $(function (){
 	// 'defaultExpr' is assigned to 'expr' if there is no expression in the
 	// URL hash when the page is loaded. Otherwise the URL hash value is
 	// assigned to 'expr' on page load.
-	defaultExpr = 'sin(x+t)*x',
+	defaultExpr = 'sin(x)*x',
 
 	// 'scope' defines the variables available inside the math expression.
 	scope = {
@@ -72,9 +72,13 @@ $(function (){
 
 	// Defines the offsets and size of the tick marks for the graph
 	numTicks = 20,
-	tickLabelXOffset = 2,
-	tickLabelYOffset = 15,
-	tickSize = 10;
+	tickSize = 10,
+	// X axis
+	tickXLabelXOffset = 2,
+	tickXLabelYOffset = 15,
+	// Y axis
+	tickYLabelXOffset = 15,
+	tickYLabelYOffset = 8;
 
 	// These are the main steps of the program.
 	setExprFromHash();
@@ -104,7 +108,15 @@ $(function (){
 	// Sets the value of 'expr' and re-parses the expression into 'tree'.
 	function setExpr(newExpr){
 		expr = newExpr;
-		tree = math.parse(expr, scope);
+
+		// Reset error message
+		$("#errormessage").html("");
+		// Try expression display error if necessary
+		try {
+			tree = math.parse(expr, scope);
+		} catch (exception) {
+			$("#errormessage").html("Error: " + exception.message);
+		}
 	}
 
 	// Initializes the text field value to contain the expression.
@@ -124,12 +136,34 @@ $(function (){
 		});
 	}
 
+	// This function will keep the user input within sane values
+	function validateFields() {
+
+		var maxX = 20,
+		maxY = 20,
+		minX = -20,
+		minY = -20;
+
+		if( parseInt($("#xmin").val()) < minX ) {
+			$("#xmin").val(minX);
+		}
+		if( parseInt($("#ymin").val()) < minY ) {
+			$("#ymin").val(minY);
+		}
+		if( parseInt($("#xmax").val()) > maxX ) {
+			$("#xmax").val(maxX);
+		}
+		if( parseInt($("#ymax").val()) > maxY ) {
+			$("#ymax").val(maxY);
+		}
+	}
+
 	// Initializes the min max fields listeners.
 	function initMinMaxFields() {
 
 		// Min fields
 		$("#xmin").change(function( event ) {
-			xMin = parseInt($("#xmin").val());
+			xMin = parseInt($("#xmin").val())
 		});
 		$("#ymin").change(function( event ) {
 			yMin = parseInt($("#ymin").val());
@@ -140,6 +174,20 @@ $(function (){
 		});
 		$("#ymax").change(function( event ) {
 			yMax = parseInt($("#ymax").val());
+		});
+
+		// Validation
+		$("#xmin").keyup(function( event ) {
+			validateFields();
+		});
+		$("#ymin").keyup(function( event ) {
+			validateFields();
+		});
+		$("#xmax").keyup(function( event ) {
+			validateFields();
+		});
+		$("#ymax").keyup(function( event ) {
+			validateFields();
 		});
 
 
@@ -240,8 +288,8 @@ $(function (){
 			// Draw tick label
 			if( label != 0) {
 				drawFilledText( (label % 1 != 0) ? label.toFixed(1) : label,
-												xpos*canvas.width + tickLabelXOffset,
-												xAxisY + tickLabelYOffset,
+												xpos*canvas.width + tickXLabelXOffset,
+												xAxisY + tickXLabelYOffset,
 												"6pt Arial",
 												"black" );
 
@@ -270,7 +318,7 @@ $(function (){
 		// Draws Y axis tick marks
 		for( i = -((numTicks/2)-1), label = yMin+step;
 				 i < numTicks/2; i++,
-				 label+= step  ) {
+				 label+= step	 ) {
 
 			// Calculate y position of the tick mark
 			var ypos = -(i - numTicks/2) / numTicks;
@@ -284,9 +332,9 @@ $(function (){
 
 			// Draw tick label
 			if( label != 0) {
-				drawFilledText( (-label % 1 != 0) ? -label.toFixed(1) : -label,
-												yAxisX + tickLabelYOffset,
-												ypos*canvas.height + tickLabelXOffset,
+				drawFilledText( (label % 1 != 0) ? label.toFixed(1) : label,
+												yAxisX + tickYLabelXOffset,
+												ypos*canvas.height + tickYLabelYOffset,
 												"6pt Arial",
 												"black" );
 			}
@@ -315,7 +363,7 @@ $(function (){
 		var i,
 
 		// These vary between xMin and xMax
-		//                and yMin and yMax.
+		//								and yMin and yMax.
 		xPixel, yPixel,
 
 		// These vary between 0 and 1.
