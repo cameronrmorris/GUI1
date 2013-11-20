@@ -38,10 +38,10 @@ $(function (){
 			
 			// Define the math "window", which is the visible region in 
 			// "math coordinates" that gets projected onto the Canvas.
-			xMin = -10,
-			xMax = 10,
-			yMin = -10,
-			yMax = 10,
+			xMin = parseInt($("#xmin").val()),
+			xMax = parseInt($("#xmax").val()),
+			yMin = parseInt($("#ymin").val()),
+			yMax = parseInt($("#ymax").val()),
 			
 			// Initialize the Math.js library
 			// see http://mathjs.org/
@@ -79,6 +79,7 @@ $(function (){
 	// These are the main steps of the program.
 	setExprFromHash();
 	initTextField();
+	initMinMaxFields();
 	startAnimation();
 
 	// Update from use of back and forward buttons.
@@ -123,9 +124,34 @@ $(function (){
 		});
 	}
 
+	// Initializes the min max fields listeners.
+	function initMinMaxFields() {
+
+		// Min fields
+		var field = $("#xmin");
+		field.change(function( event ) {
+			xMin = parseInt($("#xmin").val());
+		});
+		field = $("#ymin");
+		field.change(function( event ) {
+			yMin = parseInt($("#ymin").val());
+		});
+		// Max fields
+		field = $("#xmax");
+		field.change(function( event ) {
+			xMax = parseInt($("#xmax").val());
+		});
+		field = $("#ymax");
+		field.change(function( event ) {
+			yMax = parseInt($("#ymax").val());
+		});
+
+
+	}
+
 	// Kick off an animation loop that re-renders the plot
 	// 60 times each second using requestAnimationFrame.
-	// See http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+	// See http://www.paulirish.com/2011/requestanimationframe-for-smart-animating
 	function startAnimation(){
 		(function animloop(){
 			requestAnimationFrame(animloop);
@@ -220,7 +246,7 @@ $(function (){
 								0.5 );
 
 			// Draw tick label
-			drawFilledText( label, 
+			drawFilledText( (label % 1 != 0) ? label.toFixed(1) : label, 
 											xpos*canvas.width + tickLabelXOffset, 
 											xAxisY + tickLabelYOffset, 
 											"7pt Arial", 
@@ -266,7 +292,7 @@ $(function (){
 								0.5 );
 
 			// Draw tick label
-			drawFilledText( -label, 
+			drawFilledText(  (-label % 1 != 0) ? -label.toFixed(1) : -label, 
 											yAxisX + tickLabelYOffset, 
 											ypos*canvas.height + tickLabelXOffset, 
 											"7pt Arial", 
