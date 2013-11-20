@@ -7,7 +7,7 @@
 	Last Updated: November 17, 2013 at 12:30 PM
 
 	Description: Contains all the functions required to generate the graphing
-							 calculator in the HTML canvas.
+	calculator in the HTML canvas.
 
 	Original author:
 
@@ -27,54 +27,54 @@ $(function (){
 	// Get the 'canvas' DOM element based on its id using jQuery.
 	var canvas = $('#myCanvas')[0],
 
-			// Get the canvas context, which is a namespace for the Canvas API 
-			// functions for drawing graphics. For Canvas API documentation see
-			// http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html
-			c = canvas.getContext('2d'),
-			
-			// 'n' is the number of discrete points used to approximate the 
-			// continuous math curve defined by the math expression.
-			n = 200,
-			
-			// Define the math "window", which is the visible region in 
-			// "math coordinates" that gets projected onto the Canvas.
-			xMin = parseInt($("#xmin").val()),
-			xMax = parseInt($("#xmax").val()),
-			yMin = parseInt($("#ymin").val()),
-			yMax = parseInt($("#ymax").val()),
-			
-			// Initialize the Math.js library
-			// see http://mathjs.org/
-			math = mathjs(),
+	// Get the canvas context, which is a namespace for the Canvas API
+	// functions for drawing graphics. For Canvas API documentation see
+	// http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html
+	c = canvas.getContext('2d'),
 
-			// 'expr' contains the math expression as a string.
-			expr = '',
+	// 'n' is the number of discrete points used to approximate the
+	// continuous math curve defined by the math expression.
+	n = 200,
 
-			// 'defaultExpr' is assigned to 'expr' if there is no expression in the 
-			// URL hash when the page is loaded. Otherwise the URL hash value is 
-			// assigned to 'expr' on page load.
-			defaultExpr = 'sin(x+t)*x',
+	// Define the math "window", which is the visible region in
+	// "math coordinates" that gets projected onto the Canvas.
+	xMin = parseInt($("#xmin").val()),
+	xMax = parseInt($("#xmax").val()),
+	yMin = parseInt($("#ymin").val()),
+	yMax = parseInt($("#ymax").val()),
 
-			// 'scope' defines the variables available inside the math expression.
-			scope = {
-				x: 0,
-				t: 0
-			},
+	// Initialize the Math.js library
+	// see http://mathjs.org/
+	math = mathjs(),
 
-			// 'tree' contains the parsed math expression as an abstract syntax tree.
-			// see http://en.wikipedia.org/wiki/Abstract_syntax_tree
-			tree,
+	// 'expr' contains the math expression as a string.
+	expr = '',
 
-			// Define a time value that gets incremented every frame.
-			// This is assigned to the 't' variable in the math expression scope.
-			time = 0,
-			timeIncrement = 0.1,
+	// 'defaultExpr' is assigned to 'expr' if there is no expression in the
+	// URL hash when the page is loaded. Otherwise the URL hash value is
+	// assigned to 'expr' on page load.
+	defaultExpr = 'sin(x+t)*x',
 
-			// Defines the offsets and size of the tick marks for the graph
-			numTicks = 20,
-			tickLabelXOffset = 2,
-			tickLabelYOffset = 15,
-			tickSize = 10;
+	// 'scope' defines the variables available inside the math expression.
+	scope = {
+		x: 0,
+		t: 0
+	},
+
+	// 'tree' contains the parsed math expression as an abstract syntax tree.
+	// see http://en.wikipedia.org/wiki/Abstract_syntax_tree
+	tree,
+
+	// Define a time value that gets incremented every frame.
+	// This is assigned to the 't' variable in the math expression scope.
+	time = 0,
+	timeIncrement = 0.1,
+
+	// Defines the offsets and size of the tick marks for the graph
+	numTicks = 20,
+	tickLabelXOffset = 2,
+	tickLabelYOffset = 15,
+	tickSize = 10;
 
 	// These are the main steps of the program.
 	setExprFromHash();
@@ -116,7 +116,7 @@ $(function (){
 
 		// Set the initial text value from the math expression.
 		input.val(expr);
-		
+
 		// Listen for changes using jQuery.
 		input.keyup(function (event) {
 			setExpr(input.val());
@@ -159,7 +159,7 @@ $(function (){
 	function render(){
 		// increment time
 		time += timeIncrement;
-		
+
 		// redraw
 		drawGrapher();
 		drawCurve();
@@ -176,7 +176,7 @@ $(function (){
 		// Set line width
 		c.lineWidth=lineWidth;
 		// Draw line
-		c.beginPath();  
+		c.beginPath();
 		c.moveTo(x,y);
 		c.lineTo(dx,dy);
 		c.closePath();
@@ -218,33 +218,35 @@ $(function (){
 
 		// Draw X axis line
 		drawLine(0, xAxisY, canvas.width, xAxisY, 0.5 );
-		
+
 		// Draw X label
 		drawFilledText( "X", canvas.width, xAxisY, "8pt Arial", "red");
 
 		// Draws X axis tick marks
 		for( i = -((numTicks/2)-1), label = xMin+step;
-				 i < numTicks/2; 
+				 i < numTicks/2;
 				 i++, label+= step ) {
 
 			// Calculate x position of the tick mark
 			var xpos = (i + numTicks/2) / numTicks;
 
 			// Draw tick mark
-			drawLine( xpos*canvas.width, 
-								xAxisY - tickSize/2, 
-								xpos*canvas.width, 
+			drawLine( xpos*canvas.width,
+								xAxisY - tickSize/2,
+								xpos*canvas.width,
 								xAxisY + tickSize/2,
 								0.5 );
 
 			// Draw tick label
-			if( label != 0)
-			drawFilledText( (label % 1 != 0) ? label.toFixed(1) : label, 
-											xpos*canvas.width + tickLabelXOffset, 
-											xAxisY + tickLabelYOffset, 
-											"6pt Arial", 
-											"black" );
-		}	
+			if( label != 0) {
+				drawFilledText( (label % 1 != 0) ? label.toFixed(1) : label,
+												xpos*canvas.width + tickLabelXOffset,
+												xAxisY + tickLabelYOffset,
+												"6pt Arial",
+												"black" );
+
+			}
+		}
 
 
 	}
@@ -267,28 +269,28 @@ $(function (){
 
 		// Draws Y axis tick marks
 		for( i = -((numTicks/2)-1), label = yMin+step;
-				 i < numTicks/2; i++, 
+				 i < numTicks/2; i++,
 				 label+= step  ) {
 
 			// Calculate y position of the tick mark
 			var ypos = -(i - numTicks/2) / numTicks;
 
 			// Draw tick mark
-			drawLine( yAxisX - tickSize / 2, 
-								ypos*canvas.height, 
-								yAxisX + tickSize / 2, 
+			drawLine( yAxisX - tickSize / 2,
+								ypos*canvas.height,
+								yAxisX + tickSize / 2,
 								ypos*canvas.height,
 								0.5 );
 
 			// Draw tick label
-			if( label != 0)
-			drawFilledText(  (-label % 1 != 0) ? -label.toFixed(1) : -label, 
-											yAxisX + tickLabelYOffset, 
-											ypos*canvas.height + tickLabelXOffset, 
-											"6pt Arial", 
-											"black" );
-
-		}	
+			if( label != 0) {
+				drawFilledText( (-label % 1 != 0) ? -label.toFixed(1) : -label,
+												yAxisX + tickLabelYOffset,
+												ypos*canvas.height + tickLabelXOffset,
+												"6pt Arial",
+												"black" );
+			}
+		}
 
 
 	}
@@ -305,29 +307,29 @@ $(function (){
 		// Draw Y axis
 		drawYAxis();
 
-	} 
+	}
 
 	// Plots the math expression curve on the canvas.
 	function drawCurve(){
 		// These variables are used inside the for loop.
-		var i, 
-		
-				// These vary between xMin and xMax
-				//                and yMin and yMax.
-				xPixel, yPixel,
-				
-				// These vary between 0 and 1.
-				percentX, percentY,
-				
-				// These are values in math coordinates.
-				mathX, mathY;
-				
+		var i,
+
+		// These vary between xMin and xMax
+		//                and yMin and yMax.
+		xPixel, yPixel,
+
+		// These vary between 0 and 1.
+		percentX, percentY,
+
+		// These are values in math coordinates.
+		mathX, mathY;
+
 		// Plot the math expression as a curve using the Canvas API:
-		
+
 		// This line of code begins the math curve path definition.
 		c.beginPath();
 
-		// 'n' is the number of points used to define the curve, which 
+		// 'n' is the number of points used to define the curve, which
 		// consists of (n - 1) straight line segments.
 		for(i = 0; i < n; i++) {
 
@@ -337,20 +339,20 @@ $(function (){
 
 			// 'mathX' varies between 'xMin' and 'xMax'.
 			mathX = percentX * (xMax - xMin) + xMin;
-			
+
 			mathY = evaluateMathExpr(mathX);
-			
+
 			// Project 'mathY' from the interval ['yMin', 'yMax']
 			// to the interval [0, 1].
 			percentY = (mathY - yMin) / (yMax - yMin);
-			
+
 			// Flip Y to match canvas coordinates.
 			percentY = 1 - percentY;
-			
+
 			// Project percentX and percentY to pixel coordinates.
 			xPixel = percentX * canvas.width;
 			yPixel = percentY * canvas.height;
-			
+
 
 			// The first time this line of code is run, it defines the first point
 			// in the path, acting exactly like 'c.moveTo(xPixel, yPixel);'
@@ -363,7 +365,7 @@ $(function (){
 		c.stroke();
 	}
 
-	// Evaluates the current math expression based on the given 
+	// Evaluates the current math expression based on the given
 	// values for 'mathX' and 'time' ('time' is global).
 	// Returns a Y coordinate in math space.
 	function evaluateMathExpr(mathX){
