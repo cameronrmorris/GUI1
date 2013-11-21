@@ -130,7 +130,7 @@ $(function (){
     input.val(expr);
 
     // Listen for changes using jQuery.
-    input.keyup(function (event) {
+    input.change(function (event) {
       setExpr(input.val());
       setHashValue(expr);
     });
