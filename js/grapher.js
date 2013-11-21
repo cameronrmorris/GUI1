@@ -153,39 +153,39 @@ $(function (){
     maxY = 20,
     minX = -20,
     minY = -20;
-		
-		// Keep xmin within sane values
+
+    // Keep xmin within sane values
     if( !(parseInt($("#xmin").val()) >= minX &&
-					parseInt($("#xmin").val()) <= 0 &&
-					validNumber(parseInt($("#xmin").val())))){
-			
+          parseInt($("#xmin").val()) <= 0 &&
+          validNumber(parseInt($("#xmin").val())))){
+
       $("#xmin").val(minX);
-    
-		}
-		// Keep ymin within sane values
+
+    }
+    // Keep ymin within sane values
     if( !(parseInt($("#ymin").val()) >= minY &&
-					parseInt($("#ymin").val()) <= 0 &&
-					validNumber(parseInt($("#ymin").val())))) {
-    
-			$("#ymin").val(minY);
-    
-		}
-		// Keep xmax within sane values
+          parseInt($("#ymin").val()) <= 0 &&
+          validNumber(parseInt($("#ymin").val())))) {
+
+      $("#ymin").val(minY);
+
+    }
+    // Keep xmax within sane values
     if( !(parseInt($("#xmax").val()) <= maxX &&
-					parseInt($("#xmax").val()) >= 0 &&
-					validNumber(parseInt($("#xmax").val())))) {
-    
-			$("#xmax").val(maxX);
-    
-		}
-		// Keep ymax within sane values
+          parseInt($("#xmax").val()) >= 0 &&
+          validNumber(parseInt($("#xmax").val())))) {
+
+      $("#xmax").val(maxX);
+
+    }
+    // Keep ymax within sane values
     if( !(parseInt($("#ymax").val()) <= maxY &&
-					parseInt($("#ymax").val()) >= 0 &&
-					validNumber(parseInt($("#ymax").val())))) {
-    
-			$("#ymax").val(maxY);
-   
-		}		
+          parseInt($("#ymax").val()) >= 0 &&
+          validNumber(parseInt($("#ymax").val())))) {
+
+      $("#ymax").val(maxY);
+
+    }
   }
 
   // Initializes the min max fields listeners.

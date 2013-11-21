@@ -4,15 +4,15 @@
   Copyright (c) 2013 by Cameron R. Morris.  All rights reserved.  May be freely
   copied or excerpted for educational purposes with credit to the author.
 
-  Last Updated: November 16, 2013 at 3:50 PM
+Last Updated: November 16, 2013 at 3:50 PM
 
-  Description: This file will contain all the styling for the grapher 
-               assignment.
+Description: This file will contain all the styling for the grapher
+assignment.
 */
 
 /* Pads the content section so the grapher doesn't touch edges. */
 #content {
-    
+
     padding-bottom: 10px;
     padding-top: 10px;
     text-align: center;
@@ -36,7 +36,7 @@ label {
 
 /* Helps line up the input fields */
 input {
-    width: 100px;
+    width: 200px;
 }
 
 /* Aligns the fields  */
