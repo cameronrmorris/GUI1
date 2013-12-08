@@ -19,10 +19,10 @@
 
 		// Execute query
 		if( mysqli_query( $connection, $sql )) {
-			echo "Database " . $dbname . " created successfully.";
+			echo "Database " . $dbname . " created successfully.<br>";
 		}
 		else {
-			echo "Error creating database: " . mysqli_error($connection);
+			echo "Error creating database: " . mysqli_error($connection) . "<br>";
 		}
 	}
 	// This function is used to create the expression table in the grapher db.
@@ -48,10 +48,10 @@
 
 		// Execute query
 		if( mysqli_query( $connection, $sql )) {
-			echo "Table expressions created successfully.";
+			echo "Table expressions created successfully.<br>";
 		}
 		else {
-			echo "Error creating table: " . mysqli_error($connection);
+			echo "Error creating table: " . mysqli_error($connection) . "<br>";
 		}
 
 
@@ -182,6 +182,12 @@
 
 		// Close connection
 		mysqli_close($connection);
+	}
+	// This is used to setup the database the first time
+	elseif( $_GET["action"] == "init") {
+		echo "Initializing grapher application<br>";
+		createGrapherDatabase( $host, $port, $user, $password, $dbname );
+		createExpressionTable( $host, $port, $user, $password, $dbname );
 	}
 	// Invalid request
 	else {
