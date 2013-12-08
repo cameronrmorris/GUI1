@@ -6,14 +6,41 @@
 	$password = "";
 	$dbname = "grapher";
 
+	// This function will return the connection object if successful
+	function mysqlConnect( $host, $port, $user, $password, $dbname) {
+
+		// Not default port
+		if( $port != 3306) {
+		$connection = mysqli_connect( $host . ":" . $port,
+																	$user,
+																	$password);
+		}
+		else {
+		$connection = mysqli_connect( $host,
+																	$user,
+																	$password);	
+		}
+
+		// Select database
+		if( $dbname != NULL) {
+			mysqli_select_db( $connection, $dbname);
+		}
+
+		if( mysqli_connect_errno() ) {
+			echo "Failed to connect to MYSQL: " . mysqli_connect_error();
+			die();
+		}
+
+		return $connection;
+
+	}
+
 	// This function is used to create the grapher database.
 	function createGrapherDatabase( $host, $port, $user, $password, $dbname) {
 
 		// Connect to mysql server
-		$connection = mysqli_connect( $host . ":" . $port,
-																	$user,
-																	$password);
-
+		$connection = mysqlConnect( $host, $port, $user, $password, NULL);
+		
 		// Create database
 		$sql = "CREATE DATABASE " . $dbname . ";";
 
@@ -24,15 +51,15 @@
 		else {
 			echo "Error creating database: " . mysqli_error($connection) . "<br>";
 		}
+
+		// Close connection
+		mysqli_close($connection);
 	}
 	// This function is used to create the expression table in the grapher db.
 	function createExpressionTable( $host, $port, $user, $password, $dbname ) {
 
 		// Connect to mysql server
-		$connection = mysqli_connect( $host . ":" . $port,
-																	$user,
-																	$password,
-																	$dbname  );
+		$connection = mysqlConnect( $host, $port, $user, $password, $dbname);
 
 		// Create expression table
 		$sql = "CREATE TABLE expressions 
@@ -91,12 +118,8 @@
 		$ymin = $_GET["ymin"] ;
 		$ymax = $_GET["ymax"] ;
 
-		// Connect to database
-		$connection = mysqli_connect( $host . ":" . $port,
-																	$user,
-																	$password,
-																	$dbname  );
-		// add connect check
+		// Connect to mysql server
+		$connection = mysqlConnect( $host, $port, $user, $password, $dbname);
 
 		// Build query
 		$sql = "INSERT INTO expressions (Expression, Xmin, Xmax, Ymin, Ymax) 
@@ -126,12 +149,8 @@
 		else {
 			die("No ID set.");
 		}
-		// Connect to database
-		$connection = mysqli_connect( $host . ":" . $port,
-																	$user,
-																	$password,
-																	$dbname  );
-		// add connect check
+		// Connect to mysql server
+		$connection = mysqlConnect( $host, $port, $user, $password, $dbname);
 
 		// Query database
 		$sql = "SELECT * FROM expressions WHERE ID=" . $id;
@@ -154,12 +173,8 @@
 	// with the data
 	elseif( $_GET["action"] == "loadExpressions" ) {
 		
-		// Connect to database
-		$connection = mysqli_connect( $host . ":" . $port,
-																	$user,
-																	$password,
-																	$dbname  );
-		// add connect check
+		// Connect to mysql server
+		$connection = mysqlConnect( $host, $port, $user, $password, $dbname);
 
 		// Query database
 		$sql = "SELECT * FROM expressions";
