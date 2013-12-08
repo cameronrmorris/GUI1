@@ -40,6 +40,8 @@
 
     <!-- This contains the main graphing calculator program. -->
     <script src="js/grapher.js"> </script>
+		<!-- This contains the serverside javascript functions -->
+    <script src="js/grapherphp.js"> </script>
   </head>
   <body>
 
@@ -80,9 +82,9 @@
           <input id="ymax" tabindex="5" type="number" min="0" max="20" value="10">
         </label>
         <!-- Sends data to server -->
-        <input id="saveButton" tabindex="6" type="button" value="Save expression">
+        <input id="saveButton" tabindex="6" type="button" value="Save expression" onClick="saveExpression()">
         <!-- Populated by server -->
-        <label for="expressions">Load expression:
+        <label id="serverExpressions" for="expressions">Load expression:
           <select></select>
         </label>
       </div>

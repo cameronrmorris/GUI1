@@ -36,7 +36,10 @@ label {
 
 /* Helps line up the input fields */
 input {
-    width: 200px;
+    width: 275px;
+}
+select {
+		width: 275px;
 }
 
 /* Aligns the fields  */

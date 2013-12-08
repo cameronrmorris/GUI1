@@ -84,6 +84,8 @@
 
 		// Collect variables from the URL
 		$expression = $_GET["expression"];
+
+
 		$xmin = $_GET["xmin"] ;
 		$xmax = $_GET["xmax"] ;
 		$ymin = $_GET["ymin"] ;
@@ -104,11 +106,8 @@
 		// Execute query
 		if( mysqli_query( $connection, $sql )) {
 			
-			echo "Created expression entry: " . $expression . " " 
-																			. $xmin . " "
-																			. $xmax . " "
-																			. $ymin . " "
-																			. $ymax . " ."; 
+			echo "OK";
+																		
 		}
 		else {
 			echo "Error saving expression: " . mysqli_error($connection);
@@ -167,7 +166,7 @@
 
 		// Build html for selector
 		$result = mysqli_query( $connection, $sql);
-		echo "<select>";
+		echo "Load expression: <select id='expressions' tabindex='6' onchange='updateFields()'>";
 		while( $row = mysqli_fetch_array( $result ) ) {
 
 			echo "<option value='" . $row['ID'] . "'>" . $row['Expression'] 
