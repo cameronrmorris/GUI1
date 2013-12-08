@@ -23,40 +23,40 @@
 // Source for AJAX: http://www.w3schools.com/php/php_ajax_php.asp
 function saveExpression() {
 
-	if (window.XMLHttpRequest) {
-		// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
+  if (window.XMLHttpRequest) {
+    // code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
   }
-	else {
-		// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  else {
+    // code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
   }
 
-	// Callback for AJAX completion
-	xmlhttp.onreadystatechange=function() {
-		if (xmlhttp.readyState==4 && xmlhttp.status==200 ) {
+  // Callback for AJAX completion
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200 ) {
 
-			if( xmlhttp.responseText == "OK" ) {
-				document.getElementById("errormessage").innerHTML= "Saved.";
-				//Update dropdown
-				loadExpressions();
-			}
-			else {
-				document.getElementById("errormessage").innerHTML= xmlhttp.responseText;
-			}
-		}
-	}
-	var parameters = "";
+      if( xmlhttp.responseText == "OK" ) {
+        document.getElementById("errormessage").innerHTML= "Saved.";
+        //Update dropdown
+        loadExpressions();
+      }
+      else {
+        document.getElementById("errormessage").innerHTML= xmlhttp.responseText;
+      }
+    }
+  }
+  var parameters = "";
 
-	parameters += "&expression=" + encodeURIComponent(document.getElementById("inputField").value);
-	parameters += "&xmin=" + document.getElementById("xmin").value;
-	parameters += "&xmax=" + document.getElementById("xmax").value;
-	parameters += "&ymin=" + document.getElementById("ymin").value;
-	parameters += "&ymax=" + document.getElementById("ymax").value;
+  parameters += "&expression=" + encodeURIComponent(document.getElementById("inputField").value);
+  parameters += "&xmin=" + document.getElementById("xmin").value;
+  parameters += "&xmax=" + document.getElementById("xmax").value;
+  parameters += "&ymin=" + document.getElementById("ymin").value;
+  parameters += "&ymax=" + document.getElementById("ymax").value;
 
-	// Send request to store to database
-	xmlhttp.open("GET","grapherServer.php?action=saveExpression"+parameters,true);
-	xmlhttp.send();
+  // Send request to store to database
+  xmlhttp.open("GET","grapherServer.php?action=saveExpression"+parameters,true);
+  xmlhttp.send();
 
 }
 
@@ -68,7 +68,7 @@ document.onload = loadExpressions();
 
 function loadExpressions() {
 
-	if (window.XMLHttpRequest) {
+  if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
   }
@@ -84,9 +84,9 @@ function loadExpressions() {
       document.getElementById("serverExpressions").innerHTML= xmlhttp.responseText;
     }
   }
-	// Send request for the expressions
-	xmlhttp.open("GET","grapherServer.php?action=loadExpressions",true);
-	xmlhttp.send();
+  // Send request for the expressions
+  xmlhttp.open("GET","grapherServer.php?action=loadExpressions",true);
+  xmlhttp.send();
 
 }
 
@@ -94,7 +94,7 @@ function loadExpressions() {
 // expressions
 function updateFields() {
 
-	if (window.XMLHttpRequest) {
+  if (window.XMLHttpRequest) {
     // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
   }
@@ -105,27 +105,31 @@ function updateFields() {
 
   // Callback for AJAX completion
   xmlhttp.onreadystatechange=function() {
-		var result;
+    var result;
     if (xmlhttp.readyState==4 && xmlhttp.status==200 ) {
 
-			//Update fields
-			result = xmlhttp.responseText;
-			result = result.split(" ");
-			
-			document.getElementById("inputField").value = result[0];
-			document.getElementById("xmin").value = result[1];
-			document.getElementById("xmax").value = result[2];
-			document.getElementById("ymin").value = result[3];
-			document.getElementById("ymax").value = result[4];
-			
-			//Update URL
-			location.hash = result[0];
+      //Update fields
+      result = xmlhttp.responseText;
+      result = result.split(" ");
+
+      document.getElementById("inputField").value = result[0];
+      document.getElementById("xmin").value = result[1];
+      document.getElementById("xmax").value = result[2];
+      document.getElementById("ymin").value = result[3];
+      document.getElementById("ymax").value = result[4];
+
+      //Update URL
+      location.hash = result[0] + ","
+        + result[1] + ","
+        + result[2] + ","
+        + result[3] + ","
+        + result[4];
     }
   }
 
-	var id = document.getElementById("expressions").value;
+  var id = document.getElementById("expressions").value;
 
-	// Send request to get the information for the specified expression
+  // Send request to get the information for the specified expression
   xmlhttp.open("GET","grapherServer.php?action=loadExpression&id="+id,true);
   xmlhttp.send();
 

@@ -95,10 +95,15 @@ $(function (){
 
     var hash = getHashValue();
     if(hash){
-      setExpr(hash);
+			hash = hash.split(",");
+			xMin = parseInt(hash[1]);
+			xMax = parseInt(hash[2]);
+			yMin = parseInt(hash[3]);
+			yMax = parseInt(hash[4]);
+      setExpr(hash[0]);
     } else {
       setExpr(defaultExpr);
-      setHashValue(expr);
+      setHashValue(expr +",-10,10,-10,10");
     }
 
     // Update the text input to contain the updated expression.
@@ -132,7 +137,7 @@ $(function (){
     // Listen for changes using jQuery.
     input.change(function (event) {
       setExpr(input.val());
-      setHashValue(expr);
+      setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
   }
 
@@ -195,19 +200,23 @@ $(function (){
     $("#xmin").change(function( event ) {
       validateFields();
       xMin = parseInt($("#xmin").val());
+			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
     $("#ymin").change(function( event ) {
       validateFields();
       yMin = parseInt($("#ymin").val());
+			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
     // Max fields
     $("#xmax").change(function( event ) {
       validateFields();
       xMax = parseInt($("#xmax").val());
+			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
     $("#ymax").change(function( event ) {
       validateFields();
       yMax = parseInt($("#ymax").val());
+			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
 
   }
