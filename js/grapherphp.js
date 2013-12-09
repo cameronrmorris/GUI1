@@ -6,18 +6,10 @@
 
   Last Updated: November 17, 2013 at 12:30 PM
 
-  Description: Contains all the functions required to generate the graphing
-  calculator in the HTML canvas.
+  Description: Contains all the functions to handle the client-server
+  interaction to save and load expressions.
 
-  Original author:
-
-  * HTML5 Canvas Graphing Calculator
-  * By Curran Kelleher 11/14/2013
-  *
-  * Draws from examples found in
-  * https://github.com/curran/screencasts/tree/gh-pages/grapher
-
-  */
+*/
 
 // This function will send the expression to the server to be saved
 // Source for AJAX: http://www.w3schools.com/php/php_ajax_php.asp
@@ -37,12 +29,12 @@ function saveExpression() {
     if (xmlhttp.readyState==4 && xmlhttp.status==200 ) {
 
       if( xmlhttp.responseText == "OK" ) {
-        document.getElementById("errormessage").innerHTML= "Saved.";
+        document.getElementById("errormessage").innerHTML = "Saved.";
         //Update dropdown
         loadExpressions();
       }
       else {
-        document.getElementById("errormessage").innerHTML= xmlhttp.responseText;
+        document.getElementById("errormessage").innerHTML = xmlhttp.responseText;
       }
     }
   }

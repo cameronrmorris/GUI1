@@ -95,11 +95,11 @@ $(function (){
 
     var hash = getHashValue();
     if(hash){
-			hash = hash.split(",");
-			xMin = parseInt(hash[1]);
-			xMax = parseInt(hash[2]);
-			yMin = parseInt(hash[3]);
-			yMax = parseInt(hash[4]);
+      hash = hash.split(",");
+      xMin = parseInt(hash[1]);
+      xMax = parseInt(hash[2]);
+      yMin = parseInt(hash[3]);
+      yMax = parseInt(hash[4]);
       setExpr(hash[0]);
     } else {
       setExpr(defaultExpr);
@@ -118,9 +118,11 @@ $(function (){
     $("#errormessage").html("");
     // Try expression display error if necessary
     try {
+      $("#saveButton").prop("disabled",false);
       tree = math.parse(expr, scope);
     } catch (exception) {
       $("#errormessage").html("Error: " + exception.message);
+      $("#saveButton").prop("disabled",true);
     }
   }
 
@@ -200,23 +202,23 @@ $(function (){
     $("#xmin").change(function( event ) {
       validateFields();
       xMin = parseInt($("#xmin").val());
-			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
+      setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
     $("#ymin").change(function( event ) {
       validateFields();
       yMin = parseInt($("#ymin").val());
-			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
+      setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
     // Max fields
     $("#xmax").change(function( event ) {
       validateFields();
       xMax = parseInt($("#xmax").val());
-			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
+      setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
     $("#ymax").change(function( event ) {
       validateFields();
       yMax = parseInt($("#ymax").val());
-			setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
+      setHashValue(expr + "," + xMin + "," + xMax + "," + yMin + "," + yMax);
     });
 
   }
@@ -452,7 +454,13 @@ $(function (){
 
     // Evaluate the previously parsed math expression with the
     // new values for 'x' and 't' and return it.
-    return tree.eval();
+    try {
+      $("#saveButton").prop("disabled",false);
+      return tree.eval();
+    } catch (exception) {
+      $("#errormessage").html("Error: " + exception.message);
+      $("#saveButton").prop("disabled",true);
+    }
   }
 
 
