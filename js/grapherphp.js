@@ -1,5 +1,5 @@
 /*
-  File:  grapher.js
+  File:  grapherphp.js
   Cameron R. Morris, UMass Lowell Computer Science, cmorris@cs.uml.edu
   Copyright (c) 2013 by Cameron R. Morris.  All rights reserved.  May be freely
   copied or excerpted for educational purposes with credit to the author.
