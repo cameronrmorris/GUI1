@@ -88,6 +88,7 @@
           <select></select>
         </label>
       </div>
+			<p>Server side PHP code: <a href="grapherServer.txt">Link</a></p>
     </div>
   </body>
 </html>
