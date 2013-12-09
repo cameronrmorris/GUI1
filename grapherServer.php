@@ -1,3 +1,4 @@
+<?php
 /*
   File:  grapherServer.php
   Cameron R. Morris, UMass Lowell Computer Science, cmorris@cs.uml.edu
@@ -11,7 +12,6 @@
 
 */
 
-<?php
 // Configuration of the mysql connection
 $host = "localhost";
 $port = 3307;
